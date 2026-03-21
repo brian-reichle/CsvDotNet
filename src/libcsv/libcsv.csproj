@@ -3,5 +3,6 @@
     <TargetFrameworks>net462;netstandard2.0;net8.0;net10.0</TargetFrameworks>
     <AssemblyName>LibCsv</AssemblyName>
     <RootNamespace>LibCsv</RootNamespace>
+    <AllowUnsafeBlocks Condition="'$(TargetFrameworkIdentifier)' != '.NETCoreApp'">true</AllowUnsafeBlocks>
   </PropertyGroup>
 </Project>
