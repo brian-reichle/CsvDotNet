@@ -19,8 +19,6 @@ ref struct CellSpanEnumerator
 		}
 
 		var accumulator = 0;
-		var inQuote = false;
-
 		var tmp = _remainingRow;
 
 		while (true)
@@ -29,27 +27,29 @@ ref struct CellSpanEnumerator
 
 			if (i < 0)
 			{
-				if (inQuote)
-				{
-					InvalidCsvException.Throw();
-				}
-
 				Current = _remainingRow;
 				_remainingRow = [];
 				_alive = false;
 				return true;
 			}
 
-			if (tmp[i] == Delimiters.QuoteChar)
-			{
-				inQuote = !inQuote;
-			}
-			else if (!inQuote)
+			if (tmp[i] != Delimiters.QuoteChar)
 			{
 				accumulator += i;
 				Current = _remainingRow.Slice(0, accumulator);
 				_remainingRow = _remainingRow.Slice(accumulator + 1);
 				return true;
+			}
+
+			i++;
+			accumulator += i;
+			tmp = tmp.Slice(i);
+
+			i = tmp.IndexOf(Delimiters.QuoteChar);
+
+			if (i < 0)
+			{
+				InvalidCsvException.Throw();
 			}
 
 			i++;

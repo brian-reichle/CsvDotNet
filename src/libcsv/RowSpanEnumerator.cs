@@ -18,9 +18,7 @@ ref struct RowSpanEnumerator
 			return false;
 		}
 
-		var inQuote = false;
 		var accumulator = 0;
-
 		var tmp = _remainingDocument;
 
 		while (true)
@@ -29,28 +27,30 @@ ref struct RowSpanEnumerator
 
 			if (i < 0)
 			{
-				if (inQuote)
-				{
-					InvalidCsvException.Throw();
-				}
-
 				Current = _remainingDocument;
 				_remainingDocument = [];
 				_alive = false;
 				return true;
 			}
 
-			if (tmp[i] == Delimiters.QuoteChar)
-			{
-				inQuote = !inQuote;
-			}
-			else if (!inQuote)
+			if (tmp[i] != Delimiters.QuoteChar)
 			{
 				accumulator += i;
 				Current = _remainingDocument.Slice(0, accumulator);
 				_remainingDocument = _remainingDocument.Slice(accumulator);
 				_remainingDocument = _remainingDocument.Slice(_remainingDocument.StartsWith(['\r', '\n']) ? 2 : 1);
 				return true;
+			}
+
+			i++;
+			accumulator += i;
+			tmp = tmp.Slice(i);
+
+			i = tmp.IndexOf(Delimiters.QuoteChar);
+
+			if (i < 0)
+			{
+				InvalidCsvException.Throw();
 			}
 
 			i++;
