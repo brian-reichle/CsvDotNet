@@ -31,7 +31,7 @@ ref struct CellSpanEnumerator
 			{
 				if (inQuote)
 				{
-					throw new InvalidCsvException();
+					InvalidCsvException.Throw();
 				}
 
 				Current = _remainingRow;

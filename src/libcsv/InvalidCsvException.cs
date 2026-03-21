@@ -1,4 +1,6 @@
 ﻿// Copyright (c) Brian Reichle.  All Rights Reserved.  Licensed under the MIT License.  See LICENSE in the project root for license information.
+using System.Diagnostics.CodeAnalysis;
+
 namespace LibCsv;
 
 public sealed partial class InvalidCsvException : Exception
@@ -17,4 +19,7 @@ public sealed partial class InvalidCsvException : Exception
 		: base(message, innerException)
 	{
 	}
+
+	[DoesNotReturn]
+	internal static void Throw() => throw new InvalidCsvException();
 }

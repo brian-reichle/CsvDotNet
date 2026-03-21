@@ -16,7 +16,7 @@ public static class CsvCellValue
 		}
 		else
 		{
-			throw new InvalidCsvException();
+			InvalidCsvException.Throw();
 		}
 
 		var i = rawValue.IndexOf(Delimiters.QuoteChar);
@@ -36,7 +36,7 @@ public static class CsvCellValue
 
 			if (!rawValue.StartsWith(['"', '"']))
 			{
-				throw new InvalidCsvException();
+				InvalidCsvException.Throw();
 			}
 
 			rawValue = rawValue.Slice(2);
