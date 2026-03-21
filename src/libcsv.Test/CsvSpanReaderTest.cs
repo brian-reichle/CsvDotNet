@@ -105,10 +105,11 @@ public class CsvSpanReaderTest
 			""";
 
 		var reader = new CsvSpanReader(Document);
+		reader.MoveNextRow();
 
 		try
 		{
-			reader.MoveNextRow();
+			reader.MoveNextCell();
 			Assert.Fail("Should have thrown an InvalidCsvException.");
 		}
 		catch (InvalidCsvException)
