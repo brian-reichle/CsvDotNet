@@ -1,6 +1,9 @@
 # Build Artifacts
 artifacts
 
+# Benchmarking artifacts.
+BenchmarkDotNet.Artifacts
+
 # Visual Studio
 .vs
 *.csproj.user

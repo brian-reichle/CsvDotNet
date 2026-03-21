@@ -1,0 +1,4 @@
+[*.cs]
+
+# Benchmark classes are not permitted to be static or sealed.
+dotnet_diagnostic.CA1822.severity = none
