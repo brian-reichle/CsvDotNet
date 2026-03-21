@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>net462;net8.0;net10.0</TargetFrameworks>
+    <AssemblyName>LibCsv.Test</AssemblyName>
+    <RootNamespace>LibCsv.Test</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" />
+    <PackageReference Include="NUnit" />
+    <PackageReference Include="NUnit3TestAdapter" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\libcsv\libcsv.csproj" />
+  </ItemGroup>
+</Project>

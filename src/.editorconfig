@@ -1,0 +1,14 @@
+[*.{cs,vb}]
+# Not adding XML comments (yet).
+dotnet_diagnostic.SA0001.severity = none
+
+# Prefixing local instance members with `this.` just adds noise. It's better to have unique names.
+dotnet_diagnostic.SA1101.severity = none
+
+# We _prefer_ fields to start with underscores.
+dotnet_diagnostic.SA1309.severity = none
+dotnet_diagnostic.SX1309.severity = warning
+dotnet_diagnostic.SX1309S.severity = warning
+
+# SA1400 is a direct violation of our coding conventions.
+dotnet_diagnostic.SA1400.severity = none
