@@ -1,6 +1,4 @@
 ﻿// Copyright (c) Brian Reichle.  All Rights Reserved.  Licensed under the MIT License.  See LICENSE in the project root for license information.
-using System.Text;
-
 namespace LibCsv;
 
 public static class CsvCellValue
@@ -28,7 +26,7 @@ public static class CsvCellValue
 			return rawValue.ToString();
 		}
 
-		var builder = new StringBuilder();
+		var builder = StringBuilderPool.Rent();
 
 		do
 		{
@@ -47,6 +45,6 @@ public static class CsvCellValue
 		}
 		while (i >= 0);
 
-		return builder.Append(rawValue).ToString();
+		return StringBuilderPool.ToStringAndReturn(builder.Append(rawValue));
 	}
 }
