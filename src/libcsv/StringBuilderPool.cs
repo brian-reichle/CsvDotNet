@@ -1,4 +1,5 @@
 ﻿// Copyright (c) Brian Reichle.  All Rights Reserved.  Licensed under the MIT License.  See LICENSE in the project root for license information.
+#if !NET9_0_OR_GREATER
 using System.Text;
 
 namespace LibCsv;
@@ -31,3 +32,4 @@ static class StringBuilderPool
 	[ThreadStatic]
 	static StringBuilder? _cache;
 }
+#endif
