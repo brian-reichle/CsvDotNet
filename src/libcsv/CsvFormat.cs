@@ -1,5 +1,11 @@
 // Copyright (c) Brian Reichle.  All Rights Reserved.  Licensed under the MIT License.  See LICENSE in the project root for license information.
 
+#if NET
+using DelimiterArray = System.Runtime.CompilerServices.InlineArray4<char>;
+#else
+using DelimiterArray = char[];
+#endif
+
 namespace LibCsv;
 
 public sealed class CsvFormat
@@ -14,7 +20,20 @@ public sealed class CsvFormat
 	CsvFormat(char separator)
 	{
 		SeparatorChar = separator;
-		_delimiterChars = [separator, Delimiters.QuoteChar, '\r', '\n'];
+
+#if !NET
+		_delimiterChars = new char[4];
+#endif
+
+		Init(_delimiterChars, separator);
+
+		static void Init(Span<char> delimiters, char separator)
+		{
+			delimiters[0] = separator;
+			delimiters[1] = Delimiters.QuoteChar;
+			delimiters[2] = '\r';
+			delimiters[3] = '\n';
+		}
 	}
 
 	static CsvFormat GetCached(ref CsvFormat? cache, char separatorChar)
@@ -33,5 +52,5 @@ public sealed class CsvFormat
 	static CsvFormat? _comma;
 	static CsvFormat? _semicolon;
 
-	readonly char[] _delimiterChars;
+	readonly DelimiterArray _delimiterChars;
 }
