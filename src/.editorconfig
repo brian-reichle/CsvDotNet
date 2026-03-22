@@ -13,8 +13,16 @@ dotnet_diagnostic.SA1309.severity = none
 dotnet_diagnostic.SX1309.severity = warning
 dotnet_diagnostic.SX1309S.severity = warning
 
+# Fields belong at the end of the class.
+dotnet_diagnostic.SA1201.severity = none
+
 # SA1400 is a direct violation of our coding conventions.
 dotnet_diagnostic.SA1400.severity = none
 
 # Single line members should not need to be separated by blank lines.
 dotnet_diagnostic.SA1516.severity = none
+
+# Some types MUST match an externally defined namespace.
+# These types are not externally visible, so there is no reason
+# the class namespace needs to match the root namespace.
+dotnet_diagnostic.IDE0130.severity = none

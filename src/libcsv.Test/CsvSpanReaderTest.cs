@@ -7,6 +7,16 @@ namespace LibCsv.Test;
 public class CsvSpanReaderTest
 {
 	[Test]
+	public void NullFormat()
+	{
+#pragma warning disable CA1806 // Do not ignore method results - Creating the CsvSpanReader to test the constructor, not to use it.
+		Assert.That(
+			() => new CsvSpanReader([], null!),
+			Throws.ArgumentNullException);
+#pragma warning restore CA1806 // Do not ignore method results
+	}
+
+	[Test]
 	public void ReadEmpty()
 	{
 		var table = ReadDocument(string.Empty);

@@ -10,6 +10,8 @@ public ref struct CsvSpanReader
 
 	public CsvSpanReader(ReadOnlySpan<char> csv, CsvFormat format)
 	{
+		ArgumentNullException.ThrowIfNull(format);
+
 		_remainingDocument = csv;
 		_status = Status.EndOfRow;
 		_format = format;
