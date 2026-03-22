@@ -4,5 +4,4 @@ namespace LibCsv;
 static class Delimiters
 {
 	public const char QuoteChar = '"';
-	public const char SeparatorChar = ',';
 }

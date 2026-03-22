@@ -117,9 +117,29 @@ public class CsvSpanReaderTest
 		}
 	}
 
-	static string[][] ReadDocument(ReadOnlySpan<char> document)
+	[Test]
+	public void FormatSeparator()
 	{
-		var reader = new CsvSpanReader(document);
+		const string Document =
+			"""
+			Foo,Bar;Baz
+			"Foo,Bar;Baz"
+			""";
+
+		var table = ReadDocument(Document, CsvFormat.Semicolon);
+		Assert.That(table.Length, Is.EqualTo(2));
+		Assert.That(table[0], Is.EqualTo(["Foo,Bar", "Baz"]));
+		Assert.That(table[1], Is.EqualTo(["\"Foo,Bar;Baz\""]));
+
+		table = ReadDocument(Document, CsvFormat.Comma);
+		Assert.That(table.Length, Is.EqualTo(2));
+		Assert.That(table[0], Is.EqualTo(["Foo", "Bar;Baz"]));
+		Assert.That(table[1], Is.EqualTo(["\"Foo,Bar;Baz\""]));
+	}
+
+	static string[][] ReadDocument(ReadOnlySpan<char> document, CsvFormat? format = null)
+	{
+		var reader = new CsvSpanReader(document, format ?? CsvFormat.Comma);
 		var rowBuilder = new List<string>();
 		var tableBuilder = new List<string[]>();
 

@@ -4,9 +4,15 @@ namespace LibCsv;
 public ref struct CsvSpanReader
 {
 	public CsvSpanReader(ReadOnlySpan<char> csv)
+		: this(csv, CsvFormat.Comma)
+	{
+	}
+
+	public CsvSpanReader(ReadOnlySpan<char> csv, CsvFormat format)
 	{
 		_remainingDocument = csv;
 		_status = Status.EndOfRow;
+		_format = format;
 	}
 
 	public ReadOnlySpan<char> RawCellValue { get; private set; }
@@ -71,7 +77,7 @@ public ref struct CsvSpanReader
 
 		while (true)
 		{
-			var i = tmp.IndexOfAny([Delimiters.QuoteChar, Delimiters.SeparatorChar, '\r', '\n']);
+			var i = tmp.IndexOfAny(_format.AllDelimiters);
 
 			if (i < 0)
 			{
@@ -87,7 +93,7 @@ public ref struct CsvSpanReader
 				RawCellValue = _remainingDocument.Slice(0, accumulator);
 				_remainingDocument = _remainingDocument.Slice(accumulator);
 
-				if (_remainingDocument[0] == Delimiters.SeparatorChar)
+				if (_remainingDocument[0] == _format.SeparatorChar)
 				{
 					_remainingDocument = _remainingDocument.Slice(1);
 					return true;
@@ -115,6 +121,7 @@ public ref struct CsvSpanReader
 		}
 	}
 
+	readonly CsvFormat _format;
 	Status _status;
 	ReadOnlySpan<char> _remainingDocument;
 
