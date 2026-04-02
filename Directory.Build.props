@@ -9,11 +9,15 @@
     <AnalysisMode>Recommended</AnalysisMode>
     <WTGAnalyzersWarnAll>true</WTGAnalyzersWarnAll>
 
-    <Version>1.0.0</Version>
+    <Version>0.1.0</Version>
     <Authors>Brian Reichle</Authors>
     <Product>CsvDotNet</Product>
     <Copyright>Copyright (c) Brian Reichle</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
+
+    <PackageProjectUrl>https://github.com/brian-reichle/CsvDotNet</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/brian-reichle/CsvDotNet.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
 
     <UseArtifactsOutput>true</UseArtifactsOutput>
     <ArtifactsPath>$(MSBuildThisFileDirectory)artifacts</ArtifactsPath>
