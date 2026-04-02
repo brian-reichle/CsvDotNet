@@ -1,7 +1,7 @@
-﻿// Copyright (c) Brian Reichle.  All Rights Reserved.  Licensed under the MIT License.  See LICENSE in the project root for license information.
+// Copyright (c) Brian Reichle.  All Rights Reserved.  Licensed under the MIT License.  See LICENSE in the project root for license information.
 using System.Diagnostics.CodeAnalysis;
 
-namespace LibCsv;
+namespace CsvDotNet;
 
 public sealed partial class InvalidCsvException : Exception
 {

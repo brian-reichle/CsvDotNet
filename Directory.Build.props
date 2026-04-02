@@ -11,7 +11,7 @@
 
     <Version>1.0.0</Version>
     <Authors>Brian Reichle</Authors>
-    <Product>libcsv</Product>
+    <Product>CsvDotNet</Product>
     <Copyright>Copyright (c) Brian Reichle</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
 

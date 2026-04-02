@@ -6,7 +6,7 @@ using DelimiterArray = System.Runtime.CompilerServices.InlineArray4<char>;
 using DelimiterArray = char[];
 #endif
 
-namespace LibCsv;
+namespace CsvDotNet;
 
 public sealed class CsvFormat
 {

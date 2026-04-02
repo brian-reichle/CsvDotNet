@@ -2,37 +2,24 @@
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Jobs;
 
-namespace LibCsv.Benchmark;
+namespace CsvDotNet.Benchmark;
 
 [SimpleJob(RuntimeMoniker.Net462)]
 [SimpleJob(RuntimeMoniker.Net80)]
 [SimpleJob(RuntimeMoniker.Net90)]
 [SimpleJob(RuntimeMoniker.Net10_0)]
 [MemoryDiagnoser]
-public class CsvSpanReaderScan
+public class CellValueDecoding
 {
 	[Benchmark]
-	public int Scan()
+	public string DecodeValue()
 	{
-		var count = 0;
-		var reader = new CsvSpanReader(Document);
-
-		while (reader.MoveNextRow())
-		{
-			while (reader.MoveNextCell())
-			{
-				count++;
-			}
-		}
-
-		return count;
+		return CsvCellValue.DecodeValue(RawValue);
 	}
 
-	const string Document =
+	const string RawValue =
 		"""
-		Lead, "Foo
-		Bar
-		Baz"
-		"W, X, Y, Z", Magic
+		"Foo, Bar
+		Baz, Quux"
 		""";
 }

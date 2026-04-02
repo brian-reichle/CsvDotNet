@@ -1,5 +1,5 @@
-﻿// Copyright (c) Brian Reichle.  All Rights Reserved.  Licensed under the MIT License.  See LICENSE in the project root for license information.
-namespace LibCsv;
+// Copyright (c) Brian Reichle.  All Rights Reserved.  Licensed under the MIT License.  See LICENSE in the project root for license information.
+namespace CsvDotNet;
 
 public static partial class CsvCellValue
 {
