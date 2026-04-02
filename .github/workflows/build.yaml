@@ -29,4 +29,16 @@ jobs:
     - name: Run Tests
       if: matrix.configuration == 'Debug'
       run: dotnet test src --no-build
+    - name: Build Package
+      if: matrix.configuration == 'Release'
+      run: dotnet pack src/CsvDotNet --no-build --configuration ${{ matrix.configuration }} -p:RepositoryCommit=${{ github.sha }} -p:RepositoryBranch=${{ github.ref }}
+    - name: Save Artifacts
+      if: matrix.configuration == 'Release'
+      uses: actions/upload-artifact@v4
+      with:
+        name: package
+        path: |
+          artifacts\package\${{ matrix.configuration }}\*.nupkg
+          artifacts\package\${{ matrix.configuration }}\*.snupkg
+        if-no-files-found: error
 
