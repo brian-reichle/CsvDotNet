@@ -1,4 +1,7 @@
 [*.{cs,vb}]
+# CA1870 is currently crashing when analyzing the code.
+dotnet_diagnostic.CA1870.severity = none
+
 # Not adding XML comments (yet).
 dotnet_diagnostic.SA0001.severity = none
 
