@@ -9,7 +9,7 @@ public static partial class CsvCellValue
 		{
 			return DecodeQuotedContent(rawValue.Slice(1, rawValue.Length - 2));
 		}
-		else if (rawValue.Contains('"'))
+		else if (rawValue.Contains(Delimiters.QuoteChar))
 		{
 			InvalidCsvException.Throw();
 		}

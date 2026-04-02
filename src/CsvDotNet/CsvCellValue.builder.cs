@@ -21,7 +21,7 @@ public partial class CsvCellValue
 
 			rawValue = rawValue.Slice(i);
 
-			if (!rawValue.StartsWith(['"', '"']))
+			if (!rawValue.StartsWith([Delimiters.QuoteChar, Delimiters.QuoteChar]))
 			{
 				InvalidCsvException.Throw();
 			}
